@@ -1,13 +1,16 @@
-var {createStore, combineReducers} = require('redux');
+var {combineReducers} = require('redux');
+
+var DebugUtils = require('../../../utils/DebugUtils');
 
 var queryForm = require('../../../reducers/queryform');
+var locale = require('../../../reducers/locale');
 
 const initialState = {
     filterFields: [
         {
             rowId: 0,
             attribute: null,
-            operator: null,
+            operator: "=",
             value: null,
             exception: null
         }
@@ -33,8 +36,9 @@ const initialState = {
 
  // reducers
 const reducers = combineReducers({
-    queryForm
+    queryForm,
+    locale
 });
 
 // export the store with the given reducers
-module.exports = createStore(reducers, {queryForm: initialState});
+module.exports = DebugUtils.createDebugStore(reducers, {queryForm: initialState});
